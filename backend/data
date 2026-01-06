@@ -1,0 +1,32 @@
+    // ⭐ Recommended Add-ons
+
+    verified: {
+      type: Boolean,
+      default: false,
+    },
+
+    profileImage: {
+      type: String,
+      default: "",
+    },
+
+    businessType: {
+      type: String,
+      enum: ["real-estate", "interior-designer", "vastu", "other"],
+      default: "real-estate",
+    },
+
+    ratings: {
+      type: Number,
+      default: 0,
+    },
+
+    ratingCount: {
+      type: Number,
+      default: 0,
+    },
+
+    isActive: {
+      type: Boolean,
+      default: true,
+    },
