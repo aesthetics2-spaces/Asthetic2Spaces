@@ -100,7 +100,7 @@ const Navbar = () => {
       <motion.span
         className="text-lg font-semibold text-primary group-hover:text-[#003D4F] transition-colors"
       >
-        AestheticToSpaces
+        AestheticToSpaces 
       </motion.span>
       <span className="text-xs text-gray-500 tracking-wide">
         Design. Define. Delight.
