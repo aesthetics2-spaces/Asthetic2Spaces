@@ -58,7 +58,7 @@ const Footer = () => {
 
   const contactInfo = [
     { icon: <Phone size={18} />, text: "+1 (555) 123-4567" },
-    { icon: <Mail size={18} />, text: "hello@astra-homes.com" },
+    { icon: <Mail size={18} />, text: "aestheticstospaces@gmail.com" },
     { icon: <MapPin size={18} />, text: "123 Design District, Creative City" },
   ];
 
