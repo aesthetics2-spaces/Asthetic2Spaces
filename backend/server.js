@@ -27,19 +27,28 @@ const app = express();
 
 // Middleware
 app.use(express.json());
+const allowedOrigins = [
+  "https://symphonious-melomakarona-f82916.netlify.app",
+  "https://verdant-snickerdoodle-3ac596.netlify.app",
+  "http://localhost:5173"
+];
+
 app.use(cors({
   origin: function(origin, callback) {
-    if (!origin) return callback(null, true); // allow Postman or server-to-server requests
+    if (!origin) return callback(null, true); // allow Postman, server-to-server
     if (allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
       callback(new Error(`CORS Error: ${origin} not allowed`));
     }
   },
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  credentials: true // required if sending cookies/auth headers
+  methods: ["GET","POST","PUT","DELETE","OPTIONS"],
+  allowedHeaders: ["Content-Type","Authorization"], // headers allowed
+  credentials: true
 }));
 
+// Handle preflight OPTIONS requests
+app.options("*", cors());
 // Session configuration (required for Passport)
 app.use(
   session({
