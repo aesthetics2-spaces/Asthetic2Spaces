@@ -27,23 +27,15 @@ const app = express();
 
 // Middleware
 app.use(express.json());
-const allowedOrigins = [
-  "https://asthetic2spaces-7snq.vercel.app",
-  "http://localhost:5173"
-];
 
 app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.includes(origin)) {
-      return callback(null, true);
-    }
-    return callback(new Error("CORS not allowed"));
-  },
+  origin: "https://asthetic2spaces-7snq.vercel.app",
+  credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  credentials: true
+  allowedHeaders: ["Content-Type", "Authorization"]
 }));
 
+// 🔥 VERY IMPORTANT — handle preflight
 app.options("*", cors());
 
 
