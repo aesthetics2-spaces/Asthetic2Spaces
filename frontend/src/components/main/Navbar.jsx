@@ -92,7 +92,7 @@ const Navbar = () => {
   <Link to="/" className="flex items-center gap-2 group">
     <motion.img
       src="./assets/logo1.png"
-      alt="AstraHomes"
+      alt="Aesthetics To Spaces"
       className="h-10 w-10 rounded-lg transition-transform duration-300 group-hover:scale-105"
       whileHover={{ rotate: 5 }}
     />
@@ -100,7 +100,7 @@ const Navbar = () => {
       <motion.span
         className="text-lg font-semibold text-primary group-hover:text-[#003D4F] transition-colors"
       >
-        AestheticToSpaces 
+        Aesthetics To Spaces
       </motion.span>
       <span className="text-xs text-gray-500 tracking-wide">
         Design. Define. Delight.
