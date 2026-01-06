@@ -22,7 +22,7 @@ const LoginForm = ({ onToggleMode,onForgotPassword}) => {
     setLoading(true);
     setError("");
     try{
-      const res = await axios.post("http://localhost:5000/api/auth/login",formData,{
+      const res = await axios.post("https://asthetic2spaces-2.onrender.com/api/auth/login",formData,{
         headers:{"Content-Type":"application/json"}
       });
       if(res.data?.success){
@@ -154,7 +154,7 @@ const LoginForm = ({ onToggleMode,onForgotPassword}) => {
 
       <div className="flex items-center justify-center">
         <button 
-        onClick={()=>window.open("http://localhost:5000/auth/google","_self")}
+        onClick={()=>window.open("https://asthetic2spaces-2.onrender.com/auth/google","_self")}
         className="flex w-full items-center justify-center px-4 py-3 border border-gray-300 rounded-lg hover:border-[#004E64] hover:shadow-md transition">
           <img
             src="https://www.svgrepo.com/show/355037/google.svg"

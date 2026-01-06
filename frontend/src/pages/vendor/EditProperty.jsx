@@ -48,7 +48,7 @@ const EditProperty = () => {
     const fetchProperty = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5000/api/vendor/property/${id}`,
+          `https://asthetic2spaces-2.onrender.com/api/vendor/property/${id}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -132,7 +132,7 @@ const EditProperty = () => {
     newImages.forEach((img) => fd.append("images", img.file));
 
     const res = await axios.post(
-      "http://localhost:5000/api/vendor/upload/images",
+      "https://asthetic2spaces-2.onrender.com/api/vendor/upload/images",
       fd,
       {
         headers: { Authorization: `Bearer ${token}` },
@@ -160,7 +160,7 @@ const EditProperty = () => {
       const payload = { ...formData, images: imageUrls };
 
       const res = await axios.put(
-        `http://localhost:5000/api/vendor/property/${id}`,
+        `https://asthetic2spaces-2.onrender.com/api/vendor/property/${id}`,
         payload,
         {
           headers: {

@@ -28,7 +28,7 @@ const VendorManagement = () => {
 const [isModalOpen, setIsModalOpen] = useState(false);
 
   const adminAxios = axios.create({
-    baseURL: "http://localhost:5000/api/admin/vendor",
+    baseURL: "https://asthetic2spaces-2.onrender.com/api/admin/vendor",
     headers: {
       Authorization: `Bearer ${admin?.token}`,
     },

@@ -26,7 +26,7 @@ const handleSubmit = async (e) => {
 
   try {
     const res = await axios.post(
-      "http://localhost:5000/api/vendor/register",
+      "https://asthetic2spaces-2.onrender.com/api/vendor/register",
       formData,
       { headers: { "Content-Type": "application/json" } }
     );

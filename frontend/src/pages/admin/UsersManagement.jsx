@@ -26,7 +26,7 @@ export default function UsersManagement() {
   const fetchUsers = async () => {
     try {
       setLoading(true);
-      const res = await axios.get("http://localhost:5000/api/admin/users", {
+      const res = await axios.get("https://asthetic2spaces-2.onrender.com/api/admin/users", {
         headers: { Authorization: `Bearer ${adminToken}` },
       });
       setUsers(res.data.users || []);
@@ -45,7 +45,7 @@ export default function UsersManagement() {
     if (!window.confirm("Are you sure you want to delete this user?")) return;
 
     try {
-      await axios.delete(`http://localhost:5000/api/admin/users/${userId}`, {
+      await axios.delete(`https://asthetic2spaces-2.onrender.com/api/admin/users/${userId}`, {
         headers: { Authorization: `Bearer ${adminToken}` },
       });
       fetchUsers();
@@ -60,7 +60,7 @@ export default function UsersManagement() {
 
     try {
       await axios.put(
-        `http://localhost:5000/api/admin/users/${userId}/status`,
+        `https://asthetic2spaces-2.onrender.com/api/admin/users/${userId}/status`,
         { status: newStatus },
         { headers: { Authorization: `Bearer ${adminToken}` } }
       );
@@ -72,7 +72,7 @@ export default function UsersManagement() {
 
   const fetchSingleUser = async (id) => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/admin/users/${id}`, {
+      const res = await axios.get(`https://asthetic2spaces-2.onrender.com/api/admin/users/${id}`, {
         headers: { Authorization: `Bearer ${adminToken}` },
       });
       setSelectedUser(res.data.user);

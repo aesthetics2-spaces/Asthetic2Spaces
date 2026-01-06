@@ -24,7 +24,7 @@ const BookingForm = ({ selectedConsultation, formData, setFormData }) => {
       };
 
       const response = await axios.post(
-        "http://localhost:5000/api/consultations",
+        "https://asthetic2spaces-2.onrender.com/api/consultations",
         payload
       );
 

@@ -18,7 +18,7 @@ export const VendorAuthProvider = ({ children }) => {
 
   // Axios instance with interceptors
   const vendorAxios = axios.create({
-    baseURL: "http://localhost:5000/api",
+    baseURL: "https://asthetic2spaces-2.onrender.com/api",
   });
 
   // Add request interceptor to include token

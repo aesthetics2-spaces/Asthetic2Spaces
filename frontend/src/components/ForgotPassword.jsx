@@ -18,7 +18,7 @@ const ForgotPassword = ({ onToggleMode }) => {
 
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/auth/forgot-password",
+        "https://asthetic2spaces-2.onrender.com/api/auth/forgot-password",
         { email },
         { headers: { "Content-Type": "application/json" } }
       );

@@ -49,7 +49,7 @@ export default function AdminListingApprovals() {
     try {
       setLoading(true);
       const res = await axios.get(
-        "http://localhost:5000/api/admin/property/",
+        "https://asthetic2spaces-2.onrender.com/api/admin/property/",
         { headers: { Authorization: `Bearer ${adminToken}` } }
       );
       setProperties(res.data.properties || []);
@@ -67,7 +67,7 @@ export default function AdminListingApprovals() {
 
   const approveProperty = async (id) => {
     try {
-      await axios.put(`http://localhost:5000/api/admin/property/approve/${id}`, {}, {
+      await axios.put(`https://asthetic2spaces-2.onrender.com/api/admin/property/approve/${id}`, {}, {
         headers: { Authorization: `Bearer ${adminToken}` },
       });
       fetchProperties();
@@ -79,7 +79,7 @@ export default function AdminListingApprovals() {
 
   const rejectProperty = async (id) => {
     try {
-      await axios.put(`http://localhost:5000/api/admin/property/reject/${id}`, {}, {
+      await axios.put(`https://asthetic2spaces-2.onrender.com/api/admin/property/reject/${id}`, {}, {
         headers: { Authorization: `Bearer ${adminToken}` },
       });
       fetchProperties();
@@ -96,7 +96,7 @@ export default function AdminListingApprovals() {
 
     try {
       setIsDeleting(true);
-      await axios.delete(`http://localhost:5000/api/admin/property/delete/${id}`, {
+      await axios.delete(`https://asthetic2spaces-2.onrender.com/api/admin/property/delete/${id}`, {
         headers: { Authorization: `Bearer ${adminToken}` },
       });
       alert("Property deleted successfully!");

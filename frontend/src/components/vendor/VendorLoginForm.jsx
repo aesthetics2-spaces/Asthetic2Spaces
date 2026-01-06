@@ -31,7 +31,7 @@ const VendorLoginForm = ({ onToggleMode, onForgotPassword }) => {
 
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/vendor/login",
+        "https://asthetic2spaces-2.onrender.com/api/vendor/login",
         formData
       );
 

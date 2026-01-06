@@ -27,7 +27,7 @@ const ResetPassword = () => {
     try {
       setLoading(true);
       const res = await axios.post(
-        `http://localhost:5000/api/auth/reset-password/${token}`,
+        `https://asthetic2spaces-2.onrender.com/api/auth/reset-password/${token}`,
         { password }
       );
       if (res.data.success) {

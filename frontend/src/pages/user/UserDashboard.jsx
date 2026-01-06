@@ -19,7 +19,7 @@ const fetchLikedProperties = async () => {
     if (!user?.id) return; // ✅ FIX HERE
 
     const res = await axios.get(
-      `http://localhost:5000/api/favorites/liked/${user.id}` // ✅ FIX HERE
+      `https://asthetic2spaces-2.onrender.com/api/favorites/liked/${user.id}` // ✅ FIX HERE
     );
 
     console.log("API response:", res.data); // DEBUG

@@ -38,13 +38,13 @@ const PropertyDetails = () => {
 
   const fetchProperty = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/properties/details/${id}`);
+      const res = await axios.get(`https://asthetic2spaces-2.onrender.com/api/properties/details/${id}`);
       setProperty(res.data.property);
       setSimilar(res.data.similar || []);
 
       if (userId) {
         const favRes = await axios.get(
-          `http://localhost:5000/api/favorites/liked/${userId}`
+          `https://asthetic2spaces-2.onrender.com/api/favorites/liked/${userId}`
         );
         setIsFav(favRes.data.likedProperties.includes(id));
       }
@@ -69,7 +69,7 @@ const PropertyDetails = () => {
     try {
       const endpoint = prev ? "unlike" : "like";
       await axios.post(
-        `http://localhost:5000/api/favorites/${endpoint}/${id}`,
+        `https://asthetic2spaces-2.onrender.com/api/favorites/${endpoint}/${id}`,
         { userId }
       );
     } catch (err) {

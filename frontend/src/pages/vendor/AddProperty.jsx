@@ -60,7 +60,7 @@ const AddProperty = () => {
     const form = new FormData();
     uploadedImages.forEach((img) => form.append("images", img.file));
 
-  const res = await fetch("http://localhost:5000/api/vendor/upload/images", {
+  const res = await fetch("https://asthetic2spaces-2.onrender.com/api/vendor/upload/images", {
     method: "POST",
     headers: {
       Authorization: "Bearer " + localStorage.getItem("vendorToken"),
@@ -89,7 +89,7 @@ const handleSubmit = async (e) => {
       images: uploadedUrls 
     };
 
-    const res = await fetch("http://localhost:5000/api/vendor/property/create", {
+    const res = await fetch("https://asthetic2spaces-2.onrender.com/api/vendor/property/create", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
