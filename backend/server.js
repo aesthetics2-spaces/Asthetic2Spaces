@@ -32,26 +32,29 @@ const allowedOrigins = ["https://asthetic2spaces-7snq.vercel.app", "http://local
 
 app.use(cors({
   origin: function(origin, callback){
-    if(!origin) return callback(null, true); // allow Postman or curl requests
-    if(allowedOrigins.includes(origin)){
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
+    if(!origin) return callback(null, true); // allow curl/Postman
+    if(allowedOrigins.includes(origin)) {
+      return callback(null, true);
     }
+    return callback(new Error("Not allowed by CORS"));
   },
   credentials: true,
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"]
+  methods: ["GET","POST","PUT","DELETE","OPTIONS"],
+  allowedHeaders: ["Content-Type","Authorization"]
+}));
+
+// Handle preflight explicitly
+app.options("*", cors({
+  origin: allowedOrigins,
+  credentials: true,
+  methods: ["GET","POST","PUT","DELETE","OPTIONS"],
+  allowedHeaders: ["Content-Type","Authorization"]
 }));
 
 
 // 🔥 VERY IMPORTANT — handle preflight
 app.options("*", cors());
 
-
-
-// Handle preflight OPTIONS requests
-app.options("*", cors());
 // Session configuration (required for Passport)
 app.use(
   session({
