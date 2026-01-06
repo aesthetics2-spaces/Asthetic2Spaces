@@ -28,7 +28,7 @@ const app = express();
 // Middleware
 app.use(express.json());
 app.use(cors({
-  origin: "https://endearing-phoenix-dcc6db.netlify.app", // frontend URL
+  origin: "https://verdant-snickerdoodle-3ac596.netlify.app", // frontend URL
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // allowed HTTP methods
   credentials: true, // if sending cookies or auth headers
 }));
