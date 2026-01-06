@@ -30,7 +30,7 @@ app.use(express.json());
 app.use(cors({
   origin: [
     "http://localhost:5173",
-    "https://sweet-longma-0c019a.netlify.app"
+    "https://endearing-phoenix-dcc6db.netlify.app"
   ],
   credentials: true
 }));
