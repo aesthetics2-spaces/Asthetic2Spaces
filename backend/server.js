@@ -28,24 +28,22 @@ const app = express();
 // Middleware
 app.use(express.json());
 const allowedOrigins = [
-  "https://symphonious-melomakarona-f82916.netlify.app",
-  "https://verdant-snickerdoodle-3ac596.netlify.app",
-  "http://localhost:5173"
+  "https://asthetic2spaces-7snq.vercel.app", // Vercel frontend
+  "http://localhost:5173"                  // local dev
 ];
 
 app.use(cors({
-  origin: function(origin, callback) {
-    if (!origin) return callback(null, true); // allow Postman, server-to-server
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true); // allow Postman, curl
     if (allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error(`CORS Error: ${origin} not allowed`));
+      return callback(null, true);
     }
+    return callback(new Error("CORS not allowed"));
   },
-  methods: ["GET","POST","PUT","DELETE","OPTIONS"],
-  allowedHeaders: ["Content-Type","Authorization"], // headers allowed
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   credentials: true
 }));
+
 
 // Handle preflight OPTIONS requests
 app.options("*", cors());
