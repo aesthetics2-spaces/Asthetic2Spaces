@@ -28,7 +28,7 @@ const app = express();
 // Middleware
 app.use(express.json());
 app.use(cors({
-  origin: "https://verdant-snickerdoodle-3ac596.netlify.app", // frontend URL
+  origin: "https://symphonious-melomakarona-f82916.netlify.app", // frontend URL
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // allowed HTTP methods
   credentials: true, // if sending cookies or auth headers
 }));
