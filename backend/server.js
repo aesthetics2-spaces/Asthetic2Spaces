@@ -28,12 +28,22 @@ const app = express();
 // Middleware
 app.use(express.json());
 
+const allowedOrigins = ["https://asthetic2spaces-7snq.vercel.app", "http://localhost:5173"];
+
 app.use(cors({
-  origin: "https://asthetic2spaces-7snq.vercel.app",
+  origin: function(origin, callback){
+    if(!origin) return callback(null, true); // allow Postman or curl requests
+    if(allowedOrigins.includes(origin)){
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"]
 }));
+
 
 // 🔥 VERY IMPORTANT — handle preflight
 app.options("*", cors());
