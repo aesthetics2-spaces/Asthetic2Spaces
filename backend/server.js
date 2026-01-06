@@ -28,9 +28,16 @@ const app = express();
 // Middleware
 app.use(express.json());
 app.use(cors({
-  origin: "https://symphonious-melomakarona-f82916.netlify.app", // frontend URL
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // allowed HTTP methods
-  credentials: true, // if sending cookies or auth headers
+  origin: function(origin, callback) {
+    if (!origin) return callback(null, true); // allow Postman or server-to-server requests
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error(`CORS Error: ${origin} not allowed`));
+    }
+  },
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  credentials: true // required if sending cookies/auth headers
 }));
 
 // Session configuration (required for Passport)
