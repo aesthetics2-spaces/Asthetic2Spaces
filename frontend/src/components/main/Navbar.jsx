@@ -109,7 +109,6 @@ const Navbar = () => {
   </Link>
 </motion.div>
 
-
         {/* Desktop Navigation */}
         <motion.div
           className="hidden md:flex items-center space-x-6"
