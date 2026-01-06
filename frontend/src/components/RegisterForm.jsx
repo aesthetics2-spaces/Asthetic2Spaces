@@ -31,7 +31,7 @@ const RegisterForm = ({ onToggleMode }) => {
     setLoading(true);
     try {
       const res = await axios.post(
-        "https://asthetic2spaces-2.onrender.com/api/auth/register",
+        "https://asthetic2spaces-3.onrender.com/api/auth/register",
         {
           firstName: formData.firstName,
           lastName: formData.lastName,

@@ -22,7 +22,7 @@ const LoginForm = ({ onToggleMode,onForgotPassword}) => {
     setLoading(true);
     setError("");
     try{
-      const res = await axios.post("https://asthetic2spaces-2.onrender.com/api/auth/login",formData,{
+      const res = await axios.post("https://asthetic2spaces-3.onrender.com/api/auth/login",formData,{
         headers:{"Content-Type":"application/json"}
       });
       if(res.data?.success){
