@@ -27,9 +27,12 @@ const app = express();
 
 // Middleware
 app.use(express.json());
-app.use(cors({ 
-  origin: process.env.CLIENT_URL, 
-  credentials: true 
+app.use(cors({
+  origin: [
+    "http://localhost:5173",
+    "https://sweet-longma-0c019a.netlify.app"
+  ],
+  credentials: true
 }));
 
 // Session configuration (required for Passport)

@@ -100,7 +100,7 @@ const Footer = () => {
             <Link to="/" className="flex items-center gap-3 mb-6 group">
               <motion.img
                 src="./assets/logo1.png"
-                alt="AstraHomes"
+                alt="AstheticToSpaces"
                 className="h-14 w-14 transition-transform duration-300 group-hover:scale-105"
                 whileHover={{ rotate: 5 }}
               />
@@ -108,7 +108,7 @@ const Footer = () => {
                 className="text-3xl font-sans font-bold text-white tracking-wide"
                 whileHover={{ color: "#4ECDC4" }}
               >
-                AstraHomes
+                AstheticToSpaces
               </motion.span>
             </Link>
             
@@ -192,7 +192,7 @@ const Footer = () => {
               whileHover={{ color: "#4ECDC4" }}
               transition={{ duration: 0.2 }}
             >
-              © {currentYear} AstraHomes. All rights reserved.
+              © {currentYear} AstheticToSpaces. All rights reserved.
             </motion.p>
             
             <div className="flex gap-6">
