@@ -28,13 +28,13 @@ const app = express();
 // Middleware
 app.use(express.json());
 const allowedOrigins = [
-  "https://asthetic2spaces-7snq.vercel.app", // Vercel frontend
-  "http://localhost:5173"                  // local dev
+  "https://asthetic2spaces-7snq.vercel.app",
+  "http://localhost:5173"
 ];
 
 app.use(cors({
   origin: function (origin, callback) {
-    if (!origin) return callback(null, true); // allow Postman, curl
+    if (!origin) return callback(null, true);
     if (allowedOrigins.includes(origin)) {
       return callback(null, true);
     }
@@ -43,6 +43,9 @@ app.use(cors({
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   credentials: true
 }));
+
+app.options("*", cors());
+
 
 
 // Handle preflight OPTIONS requests
