@@ -28,11 +28,9 @@ const app = express();
 // Middleware
 app.use(express.json());
 app.use(cors({
-  origin: [
-    "http://localhost:5173",
-    "https://endearing-phoenix-dcc6db.netlify.app"
-  ],
-  credentials: true
+  origin: "https://endearing-phoenix-dcc6db.netlify.app", // frontend URL
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // allowed HTTP methods
+  credentials: true, // if sending cookies or auth headers
 }));
 
 // Session configuration (required for Passport)
