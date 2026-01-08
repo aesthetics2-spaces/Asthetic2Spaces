@@ -27,7 +27,7 @@ export const AuthProvider = ({ children }) => {
     if (!user?._id) return;
 
     const res = await axios.get(
-      `https://asthetic2spaces-2.onrender.com/api/favorites/liked/${user._id}`
+      `https://asthetic2spaces-3.onrender.com/api/favorites/liked/${user._id}`
     );
 
     setLikedProperties(res.data.likedProperties.map(p => p._id));

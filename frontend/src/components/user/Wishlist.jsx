@@ -13,7 +13,7 @@ const handleUnlike = async (propertyId, e) => {
 
   try {
     await axios.post(
-      `https://asthetic2spaces-2.onrender.com/api/favorites/unlike/${propertyId}`,
+      `https://asthetic2spaces-3.onrender.com/api/favorites/unlike/${propertyId}`,
       { userId: user.id } 
     );
 

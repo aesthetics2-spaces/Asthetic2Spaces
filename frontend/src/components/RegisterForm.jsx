@@ -219,7 +219,7 @@ const RegisterForm = ({ onToggleMode }) => {
       </div>
       <div className="flex items-center justify-center">
         <button 
-        onClick={()=>window.open("https://asthetic2spaces-2.onrender.com/auth/google","_self")}
+        onClick={()=>window.open("https://asthetic2spaces-3.onrender.com/auth/google","_self")}
         className="flex w-full items-center justify-center px-4 py-3 border border-gray-300 rounded-lg hover:border-[#004E64] hover:shadow-md transition">
           <img
             src="https://www.svgrepo.com/show/355037/google.svg"
