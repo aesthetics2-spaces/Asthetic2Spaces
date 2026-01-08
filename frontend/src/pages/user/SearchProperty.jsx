@@ -39,7 +39,7 @@ const SearchProperty = () => {
     const fetchData = async () => {
       try {
         const res = await axios.get(
-          "https://asthetic2spaces-2.onrender.com/api/vendor/property/verified"
+          "https://asthetic2spaces-3.onrender.com/api/vendor/property/verified"
         );
 
         setProperties(res.data.properties);
