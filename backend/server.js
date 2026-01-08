@@ -29,9 +29,7 @@ const app = express();
 app.use(express.json());
 
 const allowedOrigins = [
-  "https://asthetic2spaces1-c7qm.vercel.app",
-  "https://asthetic2spaces-7snq.vercel.app",
-  "https://asthetic2spaces2.vercel.app",
+"https://asthetic2spaces.vercel.app",
   "http://localhost:5173"
 ];
 app.use(cors({
