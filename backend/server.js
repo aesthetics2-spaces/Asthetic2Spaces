@@ -28,8 +28,11 @@ const app = express();
 // Middleware
 app.use(express.json());
 
-const allowedOrigins = ["https://asthetic2spaces-7snq.vercel.app", "http://localhost:5173"];
-
+const allowedOrigins = [
+  "https://asthetic2spaces1-c7qm.vercel.app",
+  "https://asthetic2spaces-7snq.vercel.app",
+  "http://localhost:5173"
+];
 app.use(cors({
   origin: function(origin, callback){
     if(!origin) return callback(null, true); // allow curl/Postman
