@@ -15,7 +15,7 @@ const handleSubmit = async (e) => {
 
   try {
     const res = await axios.post(
-      "https://asthetic2spaces-2.onrender.com/api/vendor/forgot-password",
+      "https://asthetic2spaces-3.onrender.com/api/vendor/forgot-password",
       { email },
       { headers: { "Content-Type": "application/json" } }
     );

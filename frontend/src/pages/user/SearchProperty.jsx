@@ -2,13 +2,10 @@ import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import { motion, AnimatePresence } from 'framer-motion';
 import { Heart, Search, MapPin, Bed, Bath, Square, Filter, X, Home, Star, Eye } from "lucide-react";
-import Slider from "react-slick";
-import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext"; 
-import { Navigate } from "react-router-dom";
+import PropertyCard from '../../components/searchproperty/PropertyCard';
 
 const SearchProperty = () => {
-  const navigate = useNavigate();
    const { user } = useAuth(); 
 
   const [properties, setProperties] = useState([]);
@@ -127,200 +124,7 @@ console.log(likedList)
   };
 
   // Property Card Component
- const PropertyCard = React.memo(({ property, userId, isLiked }) => {
-    const [isFav, setIsFav] = useState(isLiked);
-    const [isLoading, setIsLoading] = useState(false);
-
-    useEffect(() => {
-      setIsFav(isLiked);
-    }, [isLiked]);
-
-    const toggleFav = async (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      
-      if (!userId) {
-        alert("Please login to like properties");
-        return;
-      }
-
-      if (isLoading) return;
-
-      setIsLoading(true);
-      const currentFavState = isFav;
-
-      try {
-        setIsFav(!currentFavState);
-        const endpoint = currentFavState ? 'unlike' : 'like';
-        await axios.post(`https://asthetic2spaces-3.onrender.com/api/favorites/${endpoint}/${property._id}`, {
-          userId,
-        });
-      } catch (error) {
-        console.log("Error toggling favorite:", error);
-        setIsFav(currentFavState);
-        alert("Failed to update favorite");
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    const handleCardClick = () => {
-      navigate(`/property/${property._id}`);
-    };
-
-    const images = property.images?.length
-      ? property.images
-      : ["https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=400"];
-
-    const sliderSettings = {
-      dots: true,
-      infinite: true,
-      speed: 400,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      arrows: false,
-      autoplay: true,
-      autoplaySpeed: 3000,
-    };
-
-    const getPropertyTypeColor = (type) => {
-      switch (type) {
-        case 'villa': return 'bg-secondary';
-        case 'apartment': return 'bg-accent';
-        case 'house': return 'bg-primary';
-        default: return 'bg-primary';
-      }
-    };
-    
-    if (!user) {
-      return <Navigate to="/signup" replace />;
-    }
-
-    return (
-      <motion.div
-       
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        whileHover={{ y: -5 }}
-        className="bg-white rounded-2xl shadow-lg overflow-hidden border border-muted hover:shadow-2xl transition-all duration-300 cursor-pointer group relative"
-      >
-        <div className="relative h-64 overflow-hidden">
-          <Slider {...sliderSettings} className="h-full">
-            {images.map((img, index) => (
-              <div key={index} className="h-64">
-                <img
-                  src={img}
-                  alt="property"
-                  className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-            ))}
-          </Slider>
-
-          {/* Property Type Badge */}
-          <div className={`absolute top-3 left-3 ${getPropertyTypeColor(property.type)} text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg`}>
-            {property.type?.charAt(0).toUpperCase() + property.type?.slice(1)}
-          </div>
-
-          {/* Price Badge */}
-          <div className="absolute top-3 right-3 bg-primary text-white px-4 py-2 rounded-xl text-sm font-bold shadow-lg">
-            ₹{property.price?.toLocaleString()}
-          </div>
-
-          {/* Favorite Button - Fixed event handling */}
-          <button
-            onClick={toggleFav}
-            onMouseDown={(e) => e.stopPropagation()} // Additional prevention
-            disabled={isLoading}
-            className="absolute top-14 right-3 bg-white/90 backdrop-blur-sm p-2 rounded-full shadow-lg hover:scale-110 transition-all duration-200 disabled:opacity-50 z-10"
-          >
-            <Heart
-              size={20}
-              className={isFav ? "text-red-500 fill-red-500" : "text-neutral"}
-            />
-          </button>
-
-          {/* Overlay on Hover */}
-          <button  onClick={handleCardClick}>
-            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileHover={{ opacity: 1, scale: 1 }}
-              className="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full flex items-center gap-2 text-sm font-semibold text-neutral"
-            >
-              <Eye size={16} />
-              View Details
-            </motion.div>
-          </div>
-          </button>
-
-        </div>
-
-        <div className="p-6">
-          <div className="flex items-start justify-between mb-2">
-            <h3 className="text-xl font-bold text-neutral line-clamp-1 flex-1">{property.title}</h3>
-            {property.vastuCompliance === 'yes' && (
-              <div className="flex items-center gap-1 bg-green-50 text-green-600 px-2 py-1 rounded-full text-xs">
-                <Star size={12} />
-                Vastu
-              </div>
-            )}
-          </div>
-
-          <div className="flex items-center gap-1 text-muted mb-3">
-            <MapPin size={16} />
-            <span className="text-sm">{property.location}</span>
-          </div>
-
-          <p className="text-muted text-sm mb-4 line-clamp-2 leading-relaxed">
-            {property.description}
-          </p>
-
-          {/* Features Grid */}
-          <div className="grid grid-cols-3 gap-4 py-3 border-y border-muted">
-            <div className="text-center">
-              <div className="flex items-center justify-center gap-1 mb-1">
-                <Bed size={16} className="text-accent" />
-                <span className="font-bold text-neutral">{property.bedrooms}</span>
-              </div>
-              <div className="text-xs text-muted">Beds</div>
-            </div>
-            <div className="text-center border-x border-muted">
-              <div className="flex items-center justify-center gap-1 mb-1">
-                <Bath size={16} className="text-accent" />
-                <span className="font-bold text-neutral">{property.bathrooms}</span>
-              </div>
-              <div className="text-xs text-muted">Baths</div>
-            </div>
-            <div className="text-center">
-              <div className="flex items-center justify-center gap-1 mb-1">
-                <Square size={16} className="text-accent" />
-                <span className="font-bold text-neutral">{property.area}</span>
-              </div>
-              <div className="text-xs text-muted">Sq Ft</div>
-            </div>
-          </div>
-
-          {/* Additional Features */}
-          {(property.designFeatures || property.specialOfferings) && (
-            <div className="mt-3 flex flex-wrap gap-1">
-              {property.designFeatures && (
-                <span className="bg-accent/10 text-accent px-2 py-1 rounded-full text-xs">
-                  {property.designFeatures.split(',')[0]}
-                </span>
-              )}
-              {property.specialOfferings && (
-                <span className="bg-secondary/10 text-secondary px-2 py-1 rounded-full text-xs">
-                  {property.specialOfferings.split(',')[0]}
-                </span>
-              )}
-            </div>
-          )}
-        </div>
-      </motion.div>
-    );
-  });
-
+// 
   return (
     <div className="min-h-screen bg-light">
       {/* Banner Section */}
@@ -498,19 +302,18 @@ console.log(likedList)
               <p className="text-muted">Try adjusting your search criteria or filters</p>
             </motion.div>
           ) : (
-            <motion.div 
-              layout
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-            >
-              {filteredProperties.map((property) => (
-                <PropertyCard
-                  key={property._id}
-                  property={property}
-                  userId={userId}
-                  isLiked={likedList.includes(property._id)}
-                />
-              ))}
-            </motion.div>
+                      <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredProperties.map((property) => (
+              <PropertyCard
+  key={property._id}
+  property={property}
+  userId={userId}
+  isLiked={likedList.includes(property._id)}
+  user={user} 
+/>
+
+            ))}
+          </motion.div>
           )}
         </div>
       </div>
