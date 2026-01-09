@@ -52,8 +52,7 @@ app.use(
   })
 );
 
-// ✅ REQUIRED for preflight
-app.options("*", cors());
+
 
 
 // Session configuration (required for Passport)
