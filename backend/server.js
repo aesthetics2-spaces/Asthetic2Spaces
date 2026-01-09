@@ -36,24 +36,25 @@ const allowedOrigins = [
 app.use(
   cors({
     origin: (origin, callback) => {
-      // Allow server-to-server, Postman, curl
       if (!origin) return callback(null, true);
 
+      // exact matches
       if (allowedOrigins.includes(origin)) {
         return callback(null, true);
       }
 
-      // ❗ DO NOT throw error — just block silently
+      // allow ALL vercel preview URLs
+      if (origin.endsWith(".vercel.app")) {
+        return callback(null, true);
+      }
+
       return callback(null, false);
     },
     credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"]
   })
 );
 
-
-
+app.options("*", cors());
 
 // Session configuration (required for Passport)
 app.use(
