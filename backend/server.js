@@ -55,9 +55,6 @@ app.use(
   })
 );
 
-// ✅ REQUIRED for preflight
-app.options("*", cors());
-
 // ⬇️ ONLY AFTER CORS
 app.use(express.json());
 
